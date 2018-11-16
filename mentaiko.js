@@ -1,7 +1,7 @@
 /*keyCode*/
 const key_enter = 13, key_space = 32;
 
-const numer = 6, denom = 10;
+const numer = 4, denom = 10;
 const numofq = 10;
 
 var is_reversed_0 = false, is_scooped_0 = false;
@@ -16,7 +16,8 @@ var img_chawan_3 = document.getElementById("img_chawan_3");
 
 var cond = 0, i = 0;
 var str = "";
-var no = 1, ok = 0, ng = 0;
+var no = 0, ok = 0, ng = 0;
+var start, end, flag_end = 0;;
 
 /*function collection*/
 function get_probability() {
@@ -182,11 +183,42 @@ function reverse_chawan() {
     }
 }
 
+function calc_raito() {
+    return ok / no;
+}
+
+function calc_time_ms() {
+    return (end - start) / 1000;
+}
+
+function calc_score() {
+    var accuracy = calc_raito() * 80;
+    var agility, time = calc_time_ms();
+    var score;
+    var comment = "";
+
+    if (time <= 3 && calc_raito() >= 0.6) {agility = 40;}
+    else if (time <= 7) {agility = 20;}
+    else if (time <= 10) {agility = 10;}
+    else if (time <= 15) {agility = 5;}
+    else {agility = 0;}
+
+    score = Math.floor(accuracy + agility);
+
+    if (score >= 100) {comment = "（すばらしい）";}
+    else if (score >= 90) {comment = "（すごい）";}
+    else if (score >= 80) {comment = "（いいね）";}
+    else if (score >= 70) {comment = "（まあまあ）";}
+
+    return Math.floor(accuracy + agility) + comment;
+}
+
 function onPush_enter() {
-    if (no > numofq) {
-        alert(numofq + "杯終了\n正解：" + ok + "\n不正解：" + ng + str);
-        cond = -1;
-        str = "\n\nもう一度10杯よそいたい？左の「はじめから」を押してね\n好きなだけよそうなら「エンドレス」だよ";
+    if (ok >= numofq) {
+        if (flag_end == 0) {end = new Date();} 
+        alert(no + "杯終了\n正答率：" + (calc_raito().toFixed(3) * 100) + "\%（正解：" + ok + "　不正解：" + ng + "）" + "\nタイム　：" + calc_time_ms().toFixed(3) + "秒\nスコア　：" + calc_score() + str);
+        flag_end = 1;
+        str = "\n\nもう一度タイムアタックをしたい？左の「はじめから」を押してね\n好きなだけよそうなら「エンドレス」だよ";
         return;
     } else {no++;}
 
@@ -205,7 +237,7 @@ function onPush_space() {
 do {
     if (i <= 4) {
         switch(i) {
-            case 0: str = "準備はいい？\nOKを押したら始まるよ"; break;
+            case 0: str = "タイムアタック（10杯）の準備はいい？\nOKを押したら始まるよ"; break;
             case 1: str = "はじめますよ？"; break;
             case 2: str = "どうしてOKを押さないのですか？"; break;
             case 3: str = "このままでいいのか、いけないのか、それが問題だ\n─────ウィリアム・シェイクスピア"; break;
@@ -221,6 +253,8 @@ do {
 
 str = "";
 init_chawan();
+
+start = new Date();
 
 function onKeyDown(e) {
     switch (e.keyCode) {
