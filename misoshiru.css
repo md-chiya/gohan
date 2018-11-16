@@ -1,0 +1,61 @@
+:root {
+    --img_size: 200px;
+}
+
+body {
+    background: black;
+    margin-top: 10px;
+}
+img {
+    object-fit: contain;
+}
+h1 {
+    color: aliceblue;
+}
+p {
+    color: aliceblue;
+    text-align: center;
+}
+
+#syamoji_wrapper {
+    width: 1000px;
+    margin: auto;
+}
+.syamoji {
+    width: var(--img_size);
+    height: var(--img_size);
+    position: relative;
+    left: 400px;
+    top: 0px;
+}
+
+#chawan_wrapper {
+    width: 1000px;
+    height: var(--img_size);
+    margin: auto;
+    position: static;
+}
+img.chawan {
+    width: var(--img_size);
+    height: var(--img_size);
+    transform: scale(1.0, 1.0);
+    position: relative;
+    transition: all 500ms 0s ease;
+}
+img.chawan_sub {
+    width: var(--img_size);
+    height: var(--img_size);
+    transform: scale(0.6, 0.6);
+    transition: all 500ms 0s ease;
+    position: relative;
+}
+
+#howtoplay {
+    width: 600px;
+    height: fit-content;
+    color: aliceblue;
+    margin: auto;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
