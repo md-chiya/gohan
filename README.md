@@ -8,4 +8,4 @@
 
 # License
 Copyright (c) 2018 ryokuchi-ya  
-This software is released under the MIT License, see LICENSE.txt.
+This software is released under the MIT License, see [LICENSE.txt](https://github.com/ryokuchi-ya/gohan/blob/master/LICENSE.md).
