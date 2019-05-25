@@ -12,5 +12,5 @@ Chrome, Edge, IE で動作確認しました。
 個人的にはChromeがおすすめです。
 
 # License
-Copyright (c) 2018 ryokuchi-ya  
+Copyright (c) 2018 md-chiya  
 This software is released under the MIT License, see [LICENSE.txt](https://github.com/ryokuchi-ya/gohan/blob/master/LICENSE.txt).
